@@ -1,6 +1,5 @@
 import { Image } from "@chakra-ui/react";
 import Link from "next/link";
-import { useColorModeValue } from "../color-mode";
 
 export default function Logo() {
   return (
