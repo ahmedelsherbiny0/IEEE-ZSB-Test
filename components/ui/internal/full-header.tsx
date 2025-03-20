@@ -79,24 +79,26 @@ function LinksNavigator() {
 
   return (
     <HStack ref={containerRef} position="relative">
-      {Links.map((item, index) => (
+      {Links.map((link, index) => (
         <Button
-          key={item.id}
-          ref={(el) => (buttonRefs.current[index] = el)}
+          key={link.id}
+          ref={(el) => {
+            if (el) buttonRefs.current[index] = el;
+          }}
           colorPalette="black"
           size="sm"
           variant="ghost"
           fontWeight="bold"
           outline={0}
           fontSize={16}
-          onClick={() => router.push(item.path)}
+          onClick={() => router.push(link.path)}
           _hover={{
             color: "gray.700",
             backgroundColor: "transparent",
             transition: "all 0.2s ease-in-out",
           }}
         >
-          {item.name}
+          {link.name}
         </Button>
       ))}
 
