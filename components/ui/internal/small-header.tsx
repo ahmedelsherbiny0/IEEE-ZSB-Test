@@ -42,7 +42,7 @@ export default function SmallHeader() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, setIsOpen]);
 
   const glassBackground = useColorModeValue(
     "rgba(255, 255, 255, 0.3)",

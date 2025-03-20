@@ -78,7 +78,7 @@ function LinksNavigator() {
   }, [pathname]);
 
   return (
-    <HStack ref={containerRef} position="relative" spacing={6}>
+    <HStack ref={containerRef} position="relative">
       {Links.map((item, index) => (
         <Button
           key={item.id}
