@@ -3,8 +3,6 @@ import Link from "next/link";
 import { useColorModeValue } from "../color-mode";
 
 export default function Logo() {
-  const indicatorColor = useColorModeValue("black", "white");
-
   return (
     <Link href="/" passHref>
       <Image
