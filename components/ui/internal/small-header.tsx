@@ -21,7 +21,9 @@ export default function SmallHeader() {
   function toggleMenu() {
     setIsOpen((prev) => {
       const newValue = !prev;
-      localStorage.setItem("SmallHeaderAtom", newValue.toString());
+      if (typeof window !== "undefined") {
+        localStorage.setItem("SmallHeaderAtom", newValue.toString());
+      }
       return newValue;
     });
   }
@@ -75,6 +77,7 @@ export default function SmallHeader() {
         left="50%"
         transform="translateX(-50%)"
         top={4}
+        initial={{ maxHeight: "80px" }}
         animate={{ maxHeight: isOpen ? "500px" : "80px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         overflow="hidden"
