@@ -76,6 +76,7 @@ export default function SmallHeaderLinks() {
           gap={2}
           paddingLeft={4}
           fontWeight="normal"
+          zIndex={-50}
         >
           {Chapters.map((chapter) => (
             <Link

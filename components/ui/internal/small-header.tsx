@@ -11,40 +11,56 @@ import { useColorModeValue } from "@/components/ui/color-mode";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import SmallHeaderLinks from "./small-header-links";
 
-const MotionFlex = motion(Flex);
+const MotionFlex = motion.create(Flex);
 
 export default function SmallHeader() {
   const [isOpen, setIsOpen] = useAtom(SmallHeaderAtom);
+  const [isMounted, setIsMounted] = React.useState(false);
   const toggleRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
 
-  function toggleMenu() {
+  useEffect(() => {
+    setIsMounted(true);
+    const storedValue = localStorage.getItem("SmallHeaderAtom");
+    if (storedValue !== null) {
+      setIsOpen(storedValue === "true");
+    }
+  }, [setIsOpen]);
+
+  const toggleMenu = () => {
     setIsOpen((prev) => {
       const newValue = !prev;
-      if (typeof window !== "undefined") {
+      if (isMounted) {
         localStorage.setItem("SmallHeaderAtom", newValue.toString());
       }
       return newValue;
     });
-  }
+  };
 
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
+    if (isMounted) {
+      localStorage.setItem("SmallHeaderAtom", isOpen.toString());
+    }
+  }, [isOpen, isMounted]);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         headerRef.current &&
         !headerRef.current.contains(event.target as Node) &&
         isOpen
       ) {
         setIsOpen(false);
-        localStorage.setItem("SmallHeaderAtom", "false");
       }
-    }
+    };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, setIsOpen]);
+  }, [isOpen, setIsOpen, isMounted]);
 
   const glassBackground = useColorModeValue(
     "rgba(255, 255, 255, 0.3)",
