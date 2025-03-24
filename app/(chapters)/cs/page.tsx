@@ -1,9 +1,12 @@
+"use client";
+
 import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import PageWrapper from "@/components/ui/internal/page-wrapper";
 
 export default function page() {
   return (
-    <>
+    <PageWrapper>
       <Flex
         marginTop={20}
         fontWeight={"bold"}
@@ -60,6 +63,6 @@ export default function page() {
         necessitatibus nostrum rem soluta voluptatibus exercitationem dolor
         laboriosam. Asperiores, debitis.
       </Text>
-    </>
+    </PageWrapper>
   );
 }

@@ -43,6 +43,7 @@ function FullHeader() {
         borderColor={borderColor}
         backdropFilter="blur(16px)"
         top={4}
+        zIndex={5}
       >
         <HStack justifyContent="space-between" alignItems="center" width="full">
           <Logo

@@ -22,3 +22,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-hover);
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAtom } from "jotai";
 import { SmallHeaderAtom } from "@/atoms/atoms";
@@ -13,11 +13,11 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import SmallHeaderLinks from "./small-header-links";
 import { useColorMode } from "@/components/ui/color-mode";
 
-const MotionFlex = motion.create(Flex);
+const MotionFlex = motion(Flex);
 
 export default function SmallHeader() {
   const [isOpen, setIsOpen] = useAtom(SmallHeaderAtom);
-  const [isMounted, setIsMounted] = React.useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const toggleRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const { colorMode } = useColorMode();
@@ -30,25 +30,7 @@ export default function SmallHeader() {
     }
   }, [setIsOpen]);
 
-  const toggleMenu = () => {
-    setIsOpen((prev) => {
-      const newValue = !prev;
-      if (isMounted) {
-        localStorage.setItem("SmallHeaderAtom", newValue.toString());
-      }
-      return newValue;
-    });
-  };
-
   useEffect(() => {
-    if (isMounted) {
-      localStorage.setItem("SmallHeaderAtom", isOpen.toString());
-    }
-  }, [isOpen, isMounted]);
-
-  useEffect(() => {
-    if (!isMounted) return;
-
     const handleClickOutside = (event: MouseEvent) => {
       if (
         headerRef.current &&
@@ -63,7 +45,15 @@ export default function SmallHeader() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [isOpen, setIsOpen, isMounted]);
+  }, [isOpen, setIsOpen]);
+
+  const toggleMenu = () => {
+    setIsOpen((prev) => {
+      const newValue = !prev;
+      localStorage.setItem("SmallHeaderAtom", newValue.toString());
+      return newValue;
+    });
+  };
 
   const glassBackground = useColorModeValue(
     "rgba(255, 255, 255, 0.3)",
@@ -73,6 +63,8 @@ export default function SmallHeader() {
     "rgba(255, 255, 255, 0.2)",
     "rgba(255, 255, 255, 0.1)"
   );
+
+  if (!isMounted) return <></>;
 
   return (
     <Flex justify="center" align="center" marginY={16}>
@@ -95,11 +87,11 @@ export default function SmallHeader() {
         bgColor={glassBackground}
         left="50%"
         transform="translateX(-50%)"
-        top={4}
         initial={{ maxHeight: "70px" }}
         animate={{ maxHeight: isOpen ? "500px" : "70px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         overflow="hidden"
+        top={4}
         zIndex={5}
       >
         <Flex

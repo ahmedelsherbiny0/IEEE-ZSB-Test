@@ -21,7 +21,7 @@ export default function Logo({ logoType, width, height }: LogoOptions) {
     <Link href="/" passHref>
       <Image
         src={`/Images/IEEE/ieee-logo-${__logoType}.svg`}
-        alt="IEEE ZSB Logo"
+        alt="IEEE-ZSB Logo"
         width={width}
         height={height}
         transition="all 0.2s ease-in-out"

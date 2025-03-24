@@ -3,7 +3,8 @@ import { Provider } from "@/components/ui/provider";
 import { Box } from "@chakra-ui/react";
 import Header from "@/components/ui/internal/header";
 import Footer from "@/components/ui/internal/footer";
-import "./global.css"
+import "./global.css";
+import { AnimatePresence } from "framer-motion";
 
 export const metadata: Metadata = {
   title: "IEEE ZSB",
@@ -21,7 +22,7 @@ export default function RootLayout({
         <Provider>
           <Box margin={"auto"} maxWidth={"3000px"} padding={"15px"}>
             <Header />
-            {children}
+            <AnimatePresence mode="wait">{children}</AnimatePresence>
             <Footer />
           </Box>
         </Provider>
