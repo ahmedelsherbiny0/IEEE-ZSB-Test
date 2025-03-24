@@ -13,7 +13,7 @@ import { ColorModeButton } from "@/components/ui/color-mode";
 import SmallHeaderLinks from "./small-header-links";
 import { useColorMode } from "@/components/ui/color-mode";
 
-const MotionFlex = motion(Flex);
+const MotionFlex = motion.create(Flex);
 
 export default function SmallHeader() {
   const [isOpen, setIsOpen] = useAtom(SmallHeaderAtom);
@@ -38,6 +38,7 @@ export default function SmallHeader() {
         isOpen
       ) {
         setIsOpen(false);
+        localStorage.setItem("SmallHeaderAtom", "false");
       }
     };
 
