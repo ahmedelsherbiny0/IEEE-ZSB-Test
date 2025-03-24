@@ -4,9 +4,11 @@ import { usePathname, useRouter } from "next/navigation";
 import ChaptersMenu from "./chapters-menu";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { ColorModeButton } from "@/components/ui/color-mode";
-import Logo from "./logo";
+import Logo from "@/components/ui/internal/logo";
+import { LogoType } from "@/components/ui/internal/logo";
 import { Links } from "./links";
 import { motion } from "framer-motion";
+import { useColorMode } from "@/components/ui/color-mode";
 
 function FullHeader() {
   const glassBackground = useColorModeValue(
@@ -17,6 +19,7 @@ function FullHeader() {
     "rgba(255, 255, 255, 0.2)",
     "rgba(255, 255, 255, 0.1)"
   );
+  const { colorMode } = useColorMode();
 
   return (
     <Flex justify="center" align="center" margin={16}>
@@ -42,12 +45,15 @@ function FullHeader() {
         top={4}
       >
         <HStack justifyContent="space-between" alignItems="center" width="full">
-          <Logo />
+          <Logo
+            logoType={colorMode === "light" ? LogoType.Blue : LogoType.White}
+            width={85}
+            height={50}
+          />
           <HStack>
             <ChaptersMenu />
             <LinksNavigator />
           </HStack>
-
           <ColorModeButton />
         </HStack>
       </Box>

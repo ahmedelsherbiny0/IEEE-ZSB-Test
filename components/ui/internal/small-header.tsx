@@ -3,13 +3,15 @@
 import React, { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAtom } from "jotai";
-import { SmallHeaderAtom } from "../../../app/atoms/atoms";
+import { SmallHeaderAtom } from "@/atoms/atoms";
 import { Flex } from "@chakra-ui/react";
-import HamburgerIcon from "./hamburger-icon";
-import Logo from "./logo";
+import HamburgerIcon from "@/components/ui/internal/hamburger-icon";
+import Logo from "@/components/ui/internal/logo";
+import { LogoType } from "@/components/ui/internal/logo";
 import { useColorModeValue } from "@/components/ui/color-mode";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import SmallHeaderLinks from "./small-header-links";
+import { useColorMode } from "@/components/ui/color-mode";
 
 const MotionFlex = motion.create(Flex);
 
@@ -18,6 +20,7 @@ export default function SmallHeader() {
   const [isMounted, setIsMounted] = React.useState(false);
   const toggleRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     setIsMounted(true);
@@ -93,19 +96,24 @@ export default function SmallHeader() {
         left="50%"
         transform="translateX(-50%)"
         top={4}
-        initial={{ maxHeight: "80px" }}
-        animate={{ maxHeight: isOpen ? "500px" : "80px" }}
+        initial={{ maxHeight: "70px" }}
+        animate={{ maxHeight: isOpen ? "500px" : "70px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         overflow="hidden"
+        zIndex={5}
       >
         <Flex
           justifyContent="space-between"
           alignItems="center"
           alignSelf="self-start"
           w="full"
-          h="50px"
+          h="35px"
         >
-          <Logo />
+          <Logo
+            logoType={colorMode === "light" ? LogoType.Blue : LogoType.White}
+            width={75}
+            height={38}
+          />
           <div ref={toggleRef}>
             <HamburgerIcon isOpen={isOpen} toggleMenu={toggleMenu} />
           </div>
