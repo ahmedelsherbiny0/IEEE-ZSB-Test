@@ -43,7 +43,11 @@ function FullHeader() {
         top={4}
       >
         <HStack justifyContent="space-between" alignItems="center" width="full">
-          <Logo logoType={LogoType.Blue} width={85} height={50} />{" "}
+           <Logo
+                      logoType={LogoType.Blue}
+                      width={85}
+                      height={50}
+                    />
           <HStack>
             <ChaptersMenu />
             <LinksNavigator />
