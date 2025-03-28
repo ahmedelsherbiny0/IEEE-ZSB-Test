@@ -1,8 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Text } from "@chakra-ui/react";
-
+import { useColorMode } from "../../color-mode";
 export default function SloganTypingEffect() {
+  const { colorMode } = useColorMode();
+
   const slogan = "#we_OWN_it";
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
@@ -29,9 +31,11 @@ export default function SloganTypingEffect() {
 
   return (
     <Text
-      fontSize={{ base: "7vw", md: "5vw", lg: "50px" }} // Font size limited to max 40px
+      fontSize={{ base: "7vw", md: "7vw", lg: "50px" }}
+      // fontSize={{ base: "3rem", md: "5rem", lg: "5rem" }}
       fontWeight="bold"
-      borderRight={showCursor ? "2px solid white" : "2px solid transparent"}
+      borderRight="2px solid"
+      borderColor={showCursor ? "secondary" : "transparent"}
       textAlign="center"
       margin="auto"
       marginBottom={5}
@@ -43,7 +47,11 @@ export default function SloganTypingEffect() {
           as="span"
           key={i}
           color={
-            char === "O" || char === "W" || char === "N" ? "#FFC900" : "inherit"
+            char === "O" || char === "W" || char === "N"
+              ? "#FFC900"
+              : colorMode === "light"
+                ? "primary"
+                : "white"
           }
         >
           {char}
