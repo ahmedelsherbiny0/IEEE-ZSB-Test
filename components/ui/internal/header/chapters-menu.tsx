@@ -14,13 +14,11 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { useColorModeValue } from "@/components/ui/color-mode";
 import { Icon } from "@iconify/react";
 
 export default function ChaptersMenu() {
   const pathname = usePathname();
   const router = useRouter();
-  const indicatorColor = useColorModeValue("black", "white");
 
   return (
     <Menu.Root>
@@ -32,7 +30,7 @@ export default function ChaptersMenu() {
           gap={2}
         >
           <Button
-            colorPalette="black"
+            color={"white"}
             size="sm"
             variant="ghost"
             fontWeight="bold"
@@ -40,13 +38,11 @@ export default function ChaptersMenu() {
             padding={0}
             rounded="2xl"
             outline={0}
+            backgroundColor={"transparent"}
             _hover={{
-              color: indicatorColor,
-              backgroundColor: "transparent",
               transition: "all 0.2s ease-in-out",
             }}
             _active={{
-              color: "gray.700",
               backgroundColor: "transparent",
             }}
           >

@@ -2,25 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { Box, Flex, HStack, Button } from "@chakra-ui/react";
 import { usePathname, useRouter } from "next/navigation";
 import ChaptersMenu from "./chapters-menu";
-import { useColorModeValue } from "@/components/ui/color-mode";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import Logo from "@/components/ui/internal/logo";
 import { LogoType } from "@/components/ui/internal/logo";
 import { Links } from "./links";
 import { motion } from "framer-motion";
-import { useColorMode } from "@/components/ui/color-mode";
 
 function FullHeader() {
-  const glassBackground = useColorModeValue(
-    "rgba(255, 255, 255, 0.3)",
-    "rgba(0, 0, 0, 0.3)"
-  );
-  const borderColor = useColorModeValue(
-    "rgba(255, 255, 255, 0.2)",
-    "rgba(255, 255, 255, 0.1)"
-  );
-  const { colorMode } = useColorMode();
-
   return (
     <Flex justify="center" align="center" margin={16}>
       <Box
@@ -32,25 +20,22 @@ function FullHeader() {
         flexDirection="row"
         justifyContent="space-between"
         alignItems="center"
-        borderRadius="2xl"
-        bgColor={glassBackground}
         height="20"
-        maxWidth="min(3000px, calc(100% - 30px))"
+        maxWidth="min(3000px, calc(100% - 40px))"
         width="full"
         minWidth="200px"
         boxShadow="lg"
-        border="1px"
-        borderColor={borderColor}
+        bgColor={"card-bg-3"}
+        color={"white"}
+        border="1px solid"
+        borderColor="card-border-3"
+        borderRadius="2xl"
         backdropFilter="blur(16px)"
-        top={4}
+        top={"var(--global-spacing)"}
         zIndex={5}
       >
         <HStack justifyContent="space-between" alignItems="center" width="full">
-          <Logo
-            logoType={colorMode === "light" ? LogoType.Blue : LogoType.White}
-            width={85}
-            height={50}
-          />
+          <Logo logoType={LogoType.White} width={85} height={50} />
           <HStack>
             <ChaptersMenu />
             <LinksNavigator />
@@ -65,7 +50,6 @@ function FullHeader() {
 function LinksNavigator() {
   const router = useRouter();
   const pathname = usePathname();
-  const indicatorColor = useColorModeValue("black", "white");
 
   const [activeRect, setActiveRect] = useState<{
     left: number;
@@ -92,7 +76,7 @@ function LinksNavigator() {
           ref={(el) => {
             if (el) buttonRefs.current[index] = el;
           }}
-          colorPalette="black"
+          color={"white"}
           size="sm"
           variant="ghost"
           fontWeight="bold"
@@ -100,7 +84,6 @@ function LinksNavigator() {
           fontSize={16}
           onClick={() => router.push(link.path)}
           _hover={{
-            color: "gray.700",
             backgroundColor: "transparent",
             transition: "all 0.2s ease-in-out",
           }}
@@ -122,7 +105,7 @@ function LinksNavigator() {
                 width: activeRect.width - 32,
                 height: "3px",
                 borderRadius: "8px",
-                backgroundColor: indicatorColor,
+                backgroundColor: "white",
               }}
             />
           )}

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Box, Flex } from "@chakra-ui/react";
-import { useColorModeValue } from "../color-mode";
 
 interface HamburgerIconProps {
   isOpen: boolean;
@@ -15,7 +14,6 @@ export default function HamburgerIcon({
   toggleMenu,
 }: HamburgerIconProps) {
   const [isHovered, setIsHovered] = useState(false);
-  // console.log(isHovered);
 
   return (
     <Flex
@@ -46,14 +44,12 @@ export default function HamburgerIcon({
 }
 
 function Bar({ width }: { width: number }) {
-  const indicatorColor = useColorModeValue("black", "white");
-
   return (
     <Box
       w={width}
       h={"3px"}
       rounded={"2xl"}
-      bgColor={indicatorColor}
+      bgColor={"white"}
       transition="all 0.2s ease-in-out"
     />
   );

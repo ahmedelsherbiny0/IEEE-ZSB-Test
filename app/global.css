@@ -1,7 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap");
+
 :root {
-  --scrollbar-track: #003a5a;
+  --font-primary: "Kanit", sans-serif;
+  --scrollbar-track: #002235;
   --scrollbar-thumb: #006699;
   --scrollbar-hover: #006699dd;
+  --card-padding: 30px;
+  --global-spacing: 20px;
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --font-primary: "Kanit", sans-serif;
+    --scrollbar-track: #002235;
+    --scrollbar-thumb: #006699;
+    --scrollbar-hover: #006699dd;
+    --card-padding: 20px;
+    --global-spacing: 10px;
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 ::-webkit-scrollbar {
@@ -9,7 +40,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
+  background: var(--scrollbar-track) npm npm;
   border-radius: 15px;
 }
 
@@ -21,8 +52,4 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--scrollbar-hover);
-}
-
-html {
-  scroll-behavior: smooth;
 }

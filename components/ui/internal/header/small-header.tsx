@@ -8,10 +8,8 @@ import { Flex } from "@chakra-ui/react";
 import HamburgerIcon from "@/components/ui/internal/hamburger-icon";
 import Logo from "@/components/ui/internal/logo";
 import { LogoType } from "@/components/ui/internal/logo";
-import { useColorModeValue } from "@/components/ui/color-mode";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import SmallHeaderLinks from "./small-header-links";
-import { useColorMode } from "@/components/ui/color-mode";
 
 const MotionFlex = motion.create(Flex);
 
@@ -20,8 +18,6 @@ export default function SmallHeader() {
   const [isMounted, setIsMounted] = useState(false);
   const toggleRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const { colorMode } = useColorMode();
-
   useEffect(() => {
     setIsMounted(true);
     const storedValue = localStorage.getItem("SmallHeaderAtom");
@@ -56,15 +52,6 @@ export default function SmallHeader() {
     });
   };
 
-  const glassBackground = useColorModeValue(
-    "rgba(255, 255, 255, 0.3)",
-    "rgba(0, 0, 0, 0.3)"
-  );
-  const borderColor = useColorModeValue(
-    "rgba(255, 255, 255, 0.2)",
-    "rgba(255, 255, 255, 0.1)"
-  );
-
   if (!isMounted) return <></>;
 
   return (
@@ -74,25 +61,26 @@ export default function SmallHeader() {
         align="center"
         flexDirection="column"
         p={4}
-        maxWidth="min(3000px, calc(100% - 30px))"
+        maxWidth="min(3000px, calc(100% - 20px))"
         width="full"
         minWidth="200px"
         rounded="2xl"
         position="fixed"
         shadow="lg"
-        backdropBlur="xl"
         boxShadow="lg"
-        border="1px"
-        borderColor={borderColor}
+        bgColor={"card-bg-3"}
+        color={"white"}
+        border="1px solid"
+        borderColor="card-border-1"
         backdropFilter="blur(16px)"
-        bgColor={glassBackground}
+        backdropBlur="xl"
         left="50%"
         transform="translateX(-50%)"
         initial={{ maxHeight: "70px" }}
         animate={{ maxHeight: isOpen ? "500px" : "70px" }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
         overflow="hidden"
-        top={4}
+        top={"var(--global-spacing)"}
         zIndex={5}
       >
         <Flex
@@ -102,11 +90,7 @@ export default function SmallHeader() {
           w="full"
           h="35px"
         >
-          <Logo
-            logoType={colorMode === "light" ? LogoType.Blue : LogoType.White}
-            width={75}
-            height={38}
-          />
+          <Logo logoType={LogoType.White} width={75} height={38} />
           <div ref={toggleRef}>
             <HamburgerIcon isOpen={isOpen} toggleMenu={toggleMenu} />
           </div>

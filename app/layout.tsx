@@ -20,7 +20,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <Provider>
-          <Box margin={"auto"} maxWidth={"3000px"} padding={"15px"}>
+          <Box
+            margin={"auto"}
+            maxWidth={"3000px"}
+            color={"natural-2"}
+          >
             <Header />
             <AnimatePresence mode="wait">{children}</AnimatePresence>
             <Footer />

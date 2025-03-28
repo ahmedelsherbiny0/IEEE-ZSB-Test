@@ -13,13 +13,11 @@ import {
   SmallHeaderChaptersAccordionAtom,
 } from "@/atoms/atoms";
 import { Box, Flex } from "@chakra-ui/react";
-import { useColorModeValue } from "@/components/ui/color-mode";
 
 export default function SmallHeaderLinks() {
   const pathname = usePathname();
   const [isOpen] = useAtom(SmallHeaderChaptersAccordionAtom);
   const setSmallHeaderAtom = useSetAtom(SmallHeaderAtom);
-  const indicatorColor = useColorModeValue("black", "white");
 
   function handleLinkClick() {
     setSmallHeaderAtom((prev) => {
@@ -75,8 +73,8 @@ export default function SmallHeaderLinks() {
                       top: 0,
                       bottom: 0,
                       width: "3px",
-                      backgroundColor: indicatorColor,
                       borderRadius: "5px",
+                      backgroundColor: "white",
                     }}
                   />
                 )}
@@ -111,7 +109,7 @@ export default function SmallHeaderLinks() {
                     top: 0,
                     bottom: 0,
                     width: "3px",
-                    backgroundColor: indicatorColor,
+                    backgroundColor: "white",
                     borderRadius: "5px",
                   }}
                 />

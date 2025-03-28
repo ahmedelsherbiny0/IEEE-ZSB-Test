@@ -5,13 +5,10 @@ import React from "react";
 export default function page() {
   return (
     <PageWrapper>
-      <Flex
-        marginTop={20}
-        fontWeight={"bold"}
-        fontSize={44}
-        justifyContent={"center"}
-      >
-        WIE
+      <Flex flexDirection={"column"} padding={"var(--global-spacing)"}>
+        <Flex fontWeight={"bold"} fontSize={44} justifyContent={"center"}>
+          WIE
+        </Flex>
       </Flex>
     </PageWrapper>
   );

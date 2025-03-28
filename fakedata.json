@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Exploring the Hidden Waterfalls",
+      "description": "A journey through the untouched beauty of nature's waterfalls, hidden deep within the forest.",
+      "photo": "/Fake-Images/1.svg"
+    },
+    {
+      "id": 2,
+      "title": "The Future of AI in Daily Life",
+      "description": "How artificial intelligence is shaping our future, from smart assistants to self-driving cars.",
+      "photo": "/Fake-Images/2.svg"
+    },
+    {
+      "id": 3,
+      "title": "Delicious Homemade Pasta Recipes",
+      "description": "Step-by-step guide to making fresh pasta at home with easy and tasty recipes.",
+      "photo": "/Fake-Images/2.svg"
+    },
+    {
+      "id": 4,
+      "title": "Exploring the Cosmos: A Beginner's Guide to Astronomy",
+      "description": "An introduction to the wonders of the universe, from galaxies to black holes.",
+      "photo": "/Fake-Images/3.svg"
+    }
+  ]
+}
