@@ -3,9 +3,6 @@
 import PageWrapper from "@/components/ui/internal/page-wrapper";
 import { Flex } from "@chakra-ui/react";
 import HeroSection from "@/components/ui/internal/home/hero-section";
-import SloganTypingEffect from "@/components/ui/internal/home/slogan-typing-effect";
-import { useWindowType } from "@/hooks/use-window-type";
-import { useEffect, useRef } from "react";
 // import data from "../fakedata.json";
 // import Image from "next/image";
 
